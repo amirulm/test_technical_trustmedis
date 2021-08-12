@@ -1,0 +1,50 @@
+SELECT 
+a.unit_nama AS POLI,
+e.pasien_nama AS NAMA_PASIEN,
+e.pasien_kota AS ALAMAT,
+g.bayar_nama AS BAYAR,
+d.diagnosa_kode AS KODE,
+d.diagnosa_name AS DIAGNOSA,
+from 
+	diagnosa_pasien b JOIN kunjungan_pasien c ON c.pendaftaran_id = b.kunjungan_id 
+	JOIN master_unit a on a.unit_id = c.m_unit_id
+	JOIN master_diagnosa d ON d.diagnosa_id = b.m_diagnosa_id	
+	JOIN master_pasien e ON e.pasien_id = c.m_pasien_id 
+	JOIN master_dokter f ON	f.pegawai_id = b.m_dokter_id
+	JOIN master_pembayaran g ON g.bayar_id = c.m_bayar_id
+	WHERE
+	a.unit_id = 1
+	and month(c.daftar_tanggal)='07' 
+	and year(c.daftar_tanggal)='2021'
+	GROUP BY d.diagnosa_name
+2
+SELECT 
+a.pasien_kota AS KOTA,
+d.diagnosa_kode AS KODE,
+d.diagnosa_name as DIAGNOSA,
+COUNT(*) as jumlah
+from 
+	diagnosa_pasien b JOIN kunjungan_pasien c ON c.pendaftaran_id = b.kunjungan_id 
+	JOIN master_pasien a on a.pasien_id = c.m_pasien_id
+	JOIN master_diagnosa d ON d.diagnosa_id = b.m_diagnosa_id	
+	WHERE
+	a.pasien_kota = 'Surabaya'
+	GROUP BY d.diagnosa_name LIMIT 10
+
+9
+4
+3
+3
+1
+1
+1
+1
+
+10
+4
+4
+3
+1
+1
+1
+1

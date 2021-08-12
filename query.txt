@@ -1,0 +1,49 @@
+create table diagnosa_pasien (
+'diagnosapasien_id' int(11)NOT NULL,
+kunjungan_id int(11) DEFAULT NULL,
+m_dokter_id int(255)DEFAULT NULL,
+m_diagnosa_id int(11) DEFAULT NULL,
+diagnosapasien_jenis varchar(255) DEFAULT NULL COMMENT 'UTAMA , SEKUNDER,
+diagnosa_kasus varchar(255) DEFAULT NULL COMMENT 'LAMA,BARU'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+create table kunjungan_pasien (
+pendaftaran_id int(11) NOT NULL,
+pendaftaran_no varchar(50) DEFAULT NULL,
+m_pasien_id int(11) DEFAULT NULL,
+m_unit_id int(11) DEFAULT NULL,
+m_bayar_id int(11) DEFAULT NULL,
+daftar_tanggal timestamp(6) NULL DEFAULT NULL,
+pulang_tanggal timestamp(6) NULL DEFAULT NULL,
+m_dokter_id int(11) DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE master_diagnosa (
+diagnosa_id int(11) NOT NULL,
+diagnosa_kode varchar(255) DEFAULT NULL,
+diagnosa_name varchar(255) DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO master_diagnosa (`diagnosa_id`, `diagnosa_kode`, `diagnosa_name`) VALUES
+(1, 'K63', 'Other diseases of intestine'),
+(2, 'K04.7', 'Periapical abscess without sinus'),
+(3, 'O03.9', 'Spontaneous abortion, complete or unspecified, without complication'),
+(4, 'O02', 'Other abnormal products of conception'),
+(5, 'O20.0', 'Threatened abortion'),
+(6, 'O03.4', 'Spontaneous abortion, incomplete, without complication'),
+(7, 'N75.1', 'Abscess of Bartholin\'s gland'),
+(8, 'O03.0', 'Spontaneous abortion, incomplete, complicated by genital tract and pelvic infection'),
+(9, 'O07.0', 'Failed medical abortion, complicated by genital tract and pelvic infection'),
+(10, 'J36', 'Peritonsillar abscess');
+
+CREATE TABLE master_dokter (
+`pegawai_id` int(11) NOT NULL,
+`pegawai_nomor` varchar(255) DEFAULT NULL,
+`pegawai_nama` varchar(255) DEFAULT NULL,
+`pegawai_jenis_kelamin` char(255) DEFAULT NULL COMMENT 'L=laki-laki , P=perempuan',
+`pegawai_sip` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
